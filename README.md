@@ -84,7 +84,7 @@ There are multiple different ways of closing over the injected logger so as to b
 
 Install the library as above. In your service wrapper code import twiglet, create a logger and inject it into your application:
 
-```clojure
+```scheme
 (var http (require "http")
      twiglet (require "twiglet")
      app (require "./my-app")
@@ -106,7 +106,7 @@ Install the library as above. In your service wrapper code import twiglet, creat
 
 In your application HTTP handler:
 
-```clojure
+```scheme
 (assign module.exports 
         {'init (# (logger)
                   (def handler (req res)
