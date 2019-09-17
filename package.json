@@ -4,7 +4,8 @@
   "description": "A minimalistic microservice structured logging library written in Sibilant.",
   "main": "index.js",
   "scripts": {
-    "test": "npx sibilant -x test-log.sibilant"
+    "test": "npx sibilant -x test-log.sibilant",
+    "compile": "npx sibilant --file twiglet.sibilant >index.js"
   },
   "repository": {
     "type": "git",
