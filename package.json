@@ -1,0 +1,31 @@
+{
+  "name": "twiglet",
+  "version": "1.0.0",
+  "description": "A minimalistic microservice structured logging library written in Sibilant.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx sibilant -x test-log.sibilant"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GowerStreet/twiglet.git"
+  },
+  "keywords": [
+    "microservice",
+    "logging",
+    "structured",
+    "log",
+    "sibilant",
+    "minimal"
+  ],
+  "author": "sleepyfox@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GowerStreet/twiglet/issues"
+  },
+  "homepage": "https://github.com/GowerStreet/twiglet#readme",
+  "devDependencies": {
+    "sibilant": "0.5.x",
+    "@gowerstreet/infintestimal": "1.x"
+  }
+}

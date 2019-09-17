@@ -24,6 +24,16 @@ A structured log entry looks something like this:
 
 N.B. Here we have pretty-printed for readability, but the actual log output would be on a single line.
 
+### Log levels
+
+Log levels are one of:
+
+* DEBUG
+* INFO
+* WARNING
+* ERROR
+* CRITICAL
+
 ## Example of use (JS)
 
 First install the library
@@ -46,6 +56,7 @@ var http = require('http'),
      service = app.init(logger)
 
 http.create-server(service).listen(PORT, "0.0.0.0")
+logger.info('startup', { listening_on: PORT })
 ```
 
 In your application HTTP handler:
@@ -89,6 +100,8 @@ Install the library as above. In your service wrapper code import twiglet, creat
 (pipe http
      (.create-server service)
      (.listen PORT "0.0.0.0"))
+
+(logger.info 'startup { "listening-on" PORT })
 ```
 
 In your application HTTP handler:
@@ -100,13 +113,19 @@ In your application HTTP handler:
                     (logger.info 'http-request {'method req.method
                                                 'url req.url.path
                                                 'more-stuff "goes here"})
-                    (res.write-head 200 { "Content-Type" "application/json" })
+                    (res.write-head 200 {"Content-Type" "application/json"})
                     (res.end (JSON.stringify {'message "Hello Microservice World!"}))))})
 ```
 
 ## How to build
 
-Twiglet is built in [Sibilant](https://sibilant.org/) - an s-expression language that compiles to readable and idiomatic JavaScript. In order to make changes simply edit the file [twiglet.sibilant](twiglet.sibilant). Test your changes by running the tests with:
+First install dependencies:
+
+> npm install
+
+Twiglet is built in [Sibilant](https://sibilant.org/) - an s-expression language that compiles to readable and idiomatic JavaScript. Twiglet has no production dependencies, and other than Sibilant its only other dev dependency is the test runner - [Infintestimal](https://www.npmjs.com/package/@gowerstreet/infintestimal).
+
+In order to make changes simply edit the file [twiglet.sibilant](twiglet.sibilant). Test your changes by running the tests with:
 
 > npm test
 

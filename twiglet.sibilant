@@ -1,0 +1,30 @@
+;; Imports
+(var assert (require 'assert))
+
+;; Helpers
+(def partial1 (f x) (.bind f null x))
+
+;; Create a logger Object
+;; The attributes hash must have 'service, 'output and 'events keys
+;; call the logger with `(logger.level 'event "message" {'other "stuff"})
+(def create-logger (attributes)
+  (assert.ok (hash? attributes))
+  (assert.ok (function? attributes.output))
+  (assert.ok (and (string? attributes.service)) (not (empty? attributes.service)))
+  (assert.ok (and (hash? attributes.events) (not (empty? (keys attributes.events)))))
+
+  (def loggit (level event info)
+    (attributes.output {'service attributes.service
+                        'level level
+                        'timestamp (.toISOString (new Date))
+                        'event (or (get attributes.events event) "unspecified")
+                        'info info}))
+
+  ;; Currently log levels are not configurable
+  {'debug    (partial1 loggit "DEBUG")
+   'info     (partial1 loggit "INFO")
+   'warning  (partial1 loggit "WARNING")
+   'error    (partial1 loggit "ERROR")
+   'critical (partial1 loggit "CRITICAL")})
+
+(assign module.exports {'create-logger create-logger})

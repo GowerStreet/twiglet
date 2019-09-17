@@ -1,0 +1,20 @@
+(var {is test-runner} (require "@gowerstreet/infintestimal")
+     twiglet (require "./twiglet")
+
+     identity (# (x) x)
+     logger (twiglet.create-logger {'service "my-service"
+                                    'output identity
+                                    'events  {'startup "Service startup"
+                                              'http-request "HTTP request"}})
+     tests
+     [["create-logger should create a logger instance"
+       (#> (var log (logger.debug 'startup {}))
+           (delete log.timestamp)
+           (is log {'service "my-service"
+                    'level "DEBUG"
+                    'event "Service startup"
+                    'info {}}))]])
+
+(test-runner tests)
+
+
