@@ -1,5 +1,5 @@
 {
-  "name": "twiglet",
+  "name": "@gowerstreet/twiglet",
   "version": "1.0.0",
   "description": "A minimalistic microservice structured logging library written in Sibilant.",
   "main": "index.js",
